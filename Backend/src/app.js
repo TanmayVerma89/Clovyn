@@ -1,14 +1,16 @@
-import express from "express"
-import morgan from "morgan"
+import express from "express";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
+import authRouter from "./routes/auth.routes.js";
 
 const app = express();
 app.use(express.json());
-app.use(morgan('dev'))
+app.use(morgan("dev"));
+app.use(cookieParser()); // Middleware to parse cookies
 
-app.get('/health',(req,res) => {
-    res.status(200).json({
-        message: `Express server is running`,
-    });
-})
 
-export default app
+// Import and use your routes here
+
+app.use("/auth",authRouter)
+
+export default app;
