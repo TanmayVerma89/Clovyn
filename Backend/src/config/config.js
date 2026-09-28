@@ -1,16 +1,22 @@
-import "dotenv/config"
+import dotenv from "dotenv";
+dotenv.config();
 
 const config = {
-    PORT : process.env.PORT,
-    MONGO_URI : process.env.MONGO_URI
+    MONGO_URI: process.env.MONGO_URI,
+    PORT: process.env.PORT,
+    JWT_SECRET: process.env.JWT_SECRET
 }
 
-if(!config.PORT){
-    throw new Error('PORT is not defined in environmental variables')
+if (!config.MONGO_URI) {
+    throw new Error(" Mongo URI is not defined in the environment variables.")
 }
 
-if(!config.MONGO_URI){
-    throw new Error("MONGO_URI is not defined in environmental variables ");
+if (!config.JWT_SECRET) {
+    throw new Error(" JWT_SECRET is not defined in the environment variables");
 }
 
-export default config
+if (!config.PORT) {
+    throw new Error(" PORT is not defined in the environment variables");
+}
+
+export default config;
