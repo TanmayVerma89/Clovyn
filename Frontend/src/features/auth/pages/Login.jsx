@@ -20,7 +20,6 @@ const Login = () => {
     e.preventDefault();
     if (!email || !password) return;
     await handleLogin({ email, password });
-    console.log("Login successful");
     navigate("/");
   };
 

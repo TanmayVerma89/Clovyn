@@ -1,9 +1,9 @@
 /* ============================================================
    CLOVYN — Haute Couture & Editorial Auth Styling
-   Stitch MCP Architectural & Luxury Design System
+   Architectural & Luxury Split-Screen Design System
    ============================================================ */
 
-/* ── Typography & Base Setup ───────────────────────────────── */
+/* ── 1. Typography Tokens ──────────────────────────────────── */
 .font-serif-luxury {
   font-family: "Playfair Display", Georgia, serif;
 }
@@ -28,27 +28,27 @@
   letter-spacing: 0.08em;
 }
 
-/* ── Hide All Scrollbars Globally for Auth ─────────────────── */
-html, body {
+/* ── 2. Scrollbar Suppression ──────────────────────────────── */
+html,
+body,
+.no-scrollbar,
+.stitch-auth-container,
+.stitch-form-panel,
+.stitch-editorial-panel {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 html::-webkit-scrollbar,
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar,
+.stitch-auth-container::-webkit-scrollbar,
+.stitch-form-panel::-webkit-scrollbar,
+.stitch-editorial-panel::-webkit-scrollbar {
   display: none;
 }
 
-.no-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* ── Page Layout & Split Screen ────────────────────────────── */
+/* ── 3. Split-Screen Layout Containers ─────────────────────── */
 .stitch-auth-container {
   background-color: #08080a;
   height: 100vh;
@@ -57,12 +57,6 @@ body::-webkit-scrollbar {
   display: flex;
   position: relative;
   overflow: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.stitch-auth-container::-webkit-scrollbar {
-  display: none;
 }
 
 .stitch-form-panel {
@@ -74,17 +68,11 @@ body::-webkit-scrollbar {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem;
   position: relative;
   z-index: 10;
   border-right: 1px solid rgba(255, 255, 255, 0.06);
   overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.stitch-form-panel::-webkit-scrollbar {
-  display: none;
 }
 
 @media (min-width: 1024px) {
@@ -110,12 +98,6 @@ body::-webkit-scrollbar {
   position: relative;
   overflow: hidden;
   border-left: 1px solid rgba(212, 175, 55, 0.12);
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.stitch-editorial-panel::-webkit-scrollbar {
-  display: none;
 }
 
 @media (min-width: 1024px) {
@@ -133,7 +115,7 @@ body::-webkit-scrollbar {
   }
 }
 
-/* ── Fabric Jacquard & Twill Micro-Texture ─────────────────── */
+/* ── 4. Editorial Jacquard Texture & Ambient Lighting ──────── */
 .editorial-fabric-texture {
   position: absolute;
   inset: 0;
@@ -191,7 +173,7 @@ body::-webkit-scrollbar {
   }
 }
 
-/* ── Brand Logo Glow & Hero Emblem Frame ───────────────────── */
+/* ── 5. Brand Logo Frame & Header Thumbnail ────────────────── */
 .brand-logo-emblem-frame {
   position: relative;
   display: inline-flex;
@@ -212,8 +194,6 @@ body::-webkit-scrollbar {
 
 .brand-logo-header-thumb {
   position: relative;
-  width: 38px;
-  height: 38px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid rgba(212, 175, 55, 0.4);
@@ -228,7 +208,11 @@ body::-webkit-scrollbar {
   object-position: center;
 }
 
-/* ── Inputs & Form Controls ────────────────────────────────── */
+.gold-monogram-ambient {
+  filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.22));
+}
+
+/* ── 6. Form Inputs & Labels ───────────────────────────────── */
 .stitch-input-wrapper {
   position: relative;
   transition: all 0.25s ease;
@@ -271,7 +255,7 @@ body::-webkit-scrollbar {
   margin-bottom: 0.35rem;
 }
 
-/* ── Custom Luxury Checkbox ────────────────────────────────── */
+/* ── 7. Custom Luxury Checkbox ─────────────────────────────── */
 .stitch-checkbox {
   width: 16px;
   height: 16px;
@@ -296,7 +280,7 @@ body::-webkit-scrollbar {
   background-color: #18181f;
 }
 
-/* ── Buttons ───────────────────────────────────────────────── */
+/* ── 8. Buttons & CTAs ─────────────────────────────────────── */
 .btn-stitch-primary {
   position: relative;
   background: linear-gradient(135deg, #f2d288 0%, #d4af37 50%, #b89127 100%);
@@ -347,7 +331,6 @@ body::-webkit-scrollbar {
   box-shadow: none;
 }
 
-/* Ghost OAuth Button */
 .btn-stitch-oauth {
   background-color: #121216;
   border: 1px solid #222228;
@@ -367,7 +350,7 @@ body::-webkit-scrollbar {
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
 }
 
-/* ── Page Transitions & Micro-Animations ───────────────────── */
+/* ── 9. Transitions, Spinners & Ornaments ──────────────────── */
 .auth-page-enter {
   animation: stitchFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -398,7 +381,6 @@ body::-webkit-scrollbar {
   }
 }
 
-/* ── Spinner Loader ────────────────────────────────────────── */
 .stitch-spinner {
   width: 16px;
   height: 16px;
@@ -413,11 +395,6 @@ body::-webkit-scrollbar {
   to {
     transform: rotate(360deg);
   }
-}
-
-/* ── Ornamental Accents & Monograms ────────────────────────── */
-.gold-monogram-ambient {
-  filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.22));
 }
 
 .editorial-tag-pill {

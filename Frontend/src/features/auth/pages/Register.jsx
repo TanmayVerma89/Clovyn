@@ -38,7 +38,6 @@ const Register = () => {
       contact,
       role,
     });
-    console.log("Registration successful");
     navigate("/");
   };
 
