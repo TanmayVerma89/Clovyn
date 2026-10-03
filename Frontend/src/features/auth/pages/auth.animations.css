@@ -1,0 +1,207 @@
+/* Auth Component Styles & Animations */
+
+/* Background Waves & Glowing Ambience */
+.auth-bg-gradient {
+  background-color: #08080a;
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 50% 50%, rgba(180, 83, 9, 0.05) 0%, transparent 60%);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.ambient-wave-1 {
+  position: absolute;
+  top: -15%;
+  right: -10%;
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.04) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: floatWave 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.ambient-wave-2 {
+  position: absolute;
+  bottom: -20%;
+  left: -15%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.12) 0%, rgba(180, 83, 9, 0.03) 45%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(70px);
+  animation: floatWave 16s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+}
+
+.golden-curve-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.45;
+  pointer-events: none;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(251, 191, 36, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 60%, rgba(217, 119, 6, 0.12), transparent);
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: rgba(18, 18, 22, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.75),
+    0 0 40px -10px rgba(245, 158, 11, 0.12),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.4), transparent);
+}
+
+/* Golden Corner Accents */
+.card-corner-tl {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid rgba(251, 191, 36, 0.4);
+  border-left: 1px solid rgba(251, 191, 36, 0.4);
+  pointer-events: none;
+}
+
+.card-corner-br {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 1px solid rgba(251, 191, 36, 0.4);
+  border-right: 1px solid rgba(251, 191, 36, 0.4);
+  pointer-events: none;
+}
+
+/* Animation Keyframes */
+@keyframes floatWave {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -25px) scale(1.08); }
+  100% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+@keyframes slideOutFade {
+  0% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateY(0) scale(1);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(15deg) translateY(-25px) scale(0.93);
+    filter: blur(8px);
+  }
+}
+
+@keyframes flipTransitionIn {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-15deg) translateY(25px) scale(0.93);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes spinLoader {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Animation Classes */
+.auth-card-enter {
+  animation: flipTransitionIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.auth-card-exit {
+  animation: slideOutFade 0.38s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/* Form Input Focus & Styling */
+.auth-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f3f4f6;
+  transition: all 0.25s ease;
+}
+
+.auth-input:focus {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(245, 158, 11, 0.7);
+  box-shadow: 0 0 15px -2px rgba(245, 158, 11, 0.25);
+  outline: none;
+}
+
+.auth-input::placeholder {
+  color: rgba(156, 163, 175, 0.45);
+}
+
+/* Primary Gold Button */
+.btn-primary-gold {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  background-size: 200% 100%;
+  color: #09090b;
+  font-weight: 600;
+  box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.45);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary-gold:hover:not(:disabled) {
+  background-position: 100% 0;
+  box-shadow: 0 6px 25px 0 rgba(245, 158, 11, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-primary-gold:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 10px -2px rgba(245, 158, 11, 0.4);
+}
+
+/* Secondary / OAuth Button */
+.btn-oauth {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+  transition: all 0.25s ease;
+}
+
+.btn-oauth:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Custom Checkbox */
+.custom-checkbox-box {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Loading Spinner */
+.auth-spinner {
+  animation: spinLoader 0.8s linear infinite;
+}
