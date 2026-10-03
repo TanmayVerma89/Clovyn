@@ -1,207 +1,435 @@
-/* Auth Component Styles & Animations */
+/* ============================================================
+   CLOVYN — Haute Couture & Editorial Auth Styling
+   Stitch MCP Architectural & Luxury Design System
+   ============================================================ */
 
-/* Background Waves & Glowing Ambience */
-.auth-bg-gradient {
+/* ── Typography & Base Setup ───────────────────────────────── */
+.font-serif-luxury {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.font-display-cinzel {
+  font-family: "Cinzel", "Playfair Display", Georgia, serif;
+}
+
+.font-sans-editorial {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.tracking-ultra-wide {
+  letter-spacing: 0.35em;
+}
+
+.tracking-caps-wide {
+  letter-spacing: 0.25em;
+}
+
+.tracking-subtle {
+  letter-spacing: 0.08em;
+}
+
+/* ── Hide All Scrollbars Globally for Auth ─────────────────── */
+html, body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Page Layout & Split Screen ────────────────────────────── */
+.stitch-auth-container {
   background-color: #08080a;
-  background-image: 
-    radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 35%),
-    radial-gradient(circle at 50% 50%, rgba(180, 83, 9, 0.05) 0%, transparent 60%);
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.ambient-wave-1 {
-  position: absolute;
-  top: -15%;
-  right: -10%;
-  width: 750px;
-  height: 750px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.04) 40%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(60px);
-  animation: floatWave 12s ease-in-out infinite alternate;
-  pointer-events: none;
+.stitch-auth-container::-webkit-scrollbar {
+  display: none;
 }
 
-.ambient-wave-2 {
-  position: absolute;
-  bottom: -20%;
-  left: -15%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(234, 179, 8, 0.12) 0%, rgba(180, 83, 9, 0.03) 45%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(70px);
-  animation: floatWave 16s ease-in-out infinite alternate-reverse;
-  pointer-events: none;
+.stitch-form-panel {
+  background-color: #0c0c0e;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1.5rem;
+  position: relative;
+  z-index: 10;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.golden-curve-art {
+.stitch-form-panel::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .stitch-form-panel {
+    width: 50%;
+    padding: 2rem 3.5rem;
+    overflow-y: hidden;
+  }
+}
+
+@media (min-width: 1440px) {
+  .stitch-form-panel {
+    padding: 2.5rem 5rem;
+  }
+}
+
+.stitch-editorial-panel {
+  display: none;
+  width: 50%;
+  height: 100vh;
+  max-height: 100vh;
+  background-color: #070709;
+  position: relative;
+  overflow: hidden;
+  border-left: 1px solid rgba(212, 175, 55, 0.12);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.stitch-editorial-panel::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .stitch-editorial-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.5rem 3.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .stitch-editorial-panel {
+    padding: 3rem 4.5rem;
+  }
+}
+
+/* ── Fabric Jacquard & Twill Micro-Texture ─────────────────── */
+.editorial-fabric-texture {
   position: absolute;
   inset: 0;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(212, 175, 55, 0.02) 0px,
+      rgba(212, 175, 55, 0.02) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.015) 0px,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+  pointer-events: none;
+}
+
+.stitch-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  pointer-events: none;
+}
+
+.ambient-gold-glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(197, 160, 89, 0.05) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: pulseGoldGlow 10s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGoldGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.95;
+  }
+}
+
+/* ── Brand Logo Glow & Hero Emblem Frame ───────────────────── */
+.brand-logo-emblem-frame {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(18, 18, 22, 0.8) 70%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.18), inset 0 0 20px rgba(212, 175, 55, 0.1);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-logo-emblem-frame:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.28), inset 0 0 25px rgba(212, 175, 55, 0.18);
+  transform: scale(1.02);
+}
+
+.brand-logo-header-thumb {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  flex-shrink: 0;
+}
+
+.brand-logo-header-thumb img {
   width: 100%;
   height: 100%;
-  opacity: 0.45;
-  pointer-events: none;
-  background: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(251, 191, 36, 0.15), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 60%, rgba(217, 119, 6, 0.12), transparent);
+  object-fit: cover;
+  object-position: center;
 }
 
-/* Glassmorphism Card */
-.glass-card {
-  background: rgba(18, 18, 22, 0.72);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.75),
-    0 0 40px -10px rgba(245, 158, 11, 0.12),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+/* ── Inputs & Form Controls ────────────────────────────────── */
+.stitch-input-wrapper {
   position: relative;
+  transition: all 0.25s ease;
 }
 
-.glass-card::before {
-  content: '';
+.stitch-input {
+  background-color: #121216;
+  border: 1px solid #222228;
+  color: #f7f7f8;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.stitch-input::placeholder {
+  color: #5a5a62;
+  font-weight: 300;
+}
+
+.stitch-input:hover {
+  border-color: #35343c;
+  background-color: #141419;
+}
+
+.stitch-input:focus {
+  outline: none;
+  border-color: #d4af37;
+  background-color: #16161c;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.25), 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.stitch-label {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #a3a3ac;
+  margin-bottom: 0.35rem;
+}
+
+/* ── Custom Luxury Checkbox ────────────────────────────────── */
+.stitch-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #33333d;
+  background-color: #121216;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.stitch-checkbox.active {
+  background: linear-gradient(135deg, #e5c378 0%, #d4af37 100%);
+  border-color: #d4af37;
+  color: #0c0c0e;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.stitch-checkbox-container:hover .stitch-checkbox:not(.active) {
+  border-color: rgba(212, 175, 55, 0.5);
+  background-color: #18181f;
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.btn-stitch-primary {
+  position: relative;
+  background: linear-gradient(135deg, #f2d288 0%, #d4af37 50%, #b89127 100%);
+  color: #0c0c0e;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 0.725rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.22);
+  overflow: hidden;
+}
+
+.btn-stitch-primary::before {
+  content: "";
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.4), transparent);
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transition: left 0.6s ease;
 }
 
-/* Golden Corner Accents */
-.card-corner-tl {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 16px;
-  height: 16px;
-  border-top: 1px solid rgba(251, 191, 36, 0.4);
-  border-left: 1px solid rgba(251, 191, 36, 0.4);
-  pointer-events: none;
-}
-
-.card-corner-br {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 16px;
-  height: 16px;
-  border-bottom: 1px solid rgba(251, 191, 36, 0.4);
-  border-right: 1px solid rgba(251, 191, 36, 0.4);
-  pointer-events: none;
-}
-
-/* Animation Keyframes */
-@keyframes floatWave {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(30px, -25px) scale(1.08); }
-  100% { transform: translate(-20px, 20px) scale(0.95); }
-}
-
-@keyframes slideOutFade {
-  0% {
-    opacity: 1;
-    transform: perspective(1000px) rotateY(0deg) translateY(0) scale(1);
-    filter: blur(0px);
-  }
-  100% {
-    opacity: 0;
-    transform: perspective(1000px) rotateY(15deg) translateY(-25px) scale(0.93);
-    filter: blur(8px);
-  }
-}
-
-@keyframes flipTransitionIn {
-  0% {
-    opacity: 0;
-    transform: perspective(1000px) rotateY(-15deg) translateY(25px) scale(0.93);
-    filter: blur(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: perspective(1000px) rotateY(0deg) translateY(0) scale(1);
-    filter: blur(0px);
-  }
-}
-
-@keyframes spinLoader {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Animation Classes */
-.auth-card-enter {
-  animation: flipTransitionIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.auth-card-exit {
-  animation: slideOutFade 0.38s cubic-bezier(0.4, 0, 1, 1) forwards;
-}
-
-/* Form Input Focus & Styling */
-.auth-input {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f3f4f6;
-  transition: all 0.25s ease;
-}
-
-.auth-input:focus {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(245, 158, 11, 0.7);
-  box-shadow: 0 0 15px -2px rgba(245, 158, 11, 0.25);
-  outline: none;
-}
-
-.auth-input::placeholder {
-  color: rgba(156, 163, 175, 0.45);
-}
-
-/* Primary Gold Button */
-.btn-primary-gold {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
-  background-size: 200% 100%;
-  color: #09090b;
-  font-weight: 600;
-  box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.45);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-primary-gold:hover:not(:disabled) {
-  background-position: 100% 0;
-  box-shadow: 0 6px 25px 0 rgba(245, 158, 11, 0.6);
+.btn-stitch-primary:hover:not(:disabled) {
   transform: translateY(-1px);
+  box-shadow: 0 6px 26px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, #ffe09b 0%, #e0bc46 50%, #c59d33 100%);
 }
 
-.btn-primary-gold:active:not(:disabled) {
-  transform: translateY(1px);
-  box-shadow: 0 2px 10px -2px rgba(245, 158, 11, 0.4);
+.btn-stitch-primary:hover:not(:disabled)::before {
+  left: 100%;
 }
 
-/* Secondary / OAuth Button */
-.btn-oauth {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #e5e7eb;
-  transition: all 0.25s ease;
+.btn-stitch-primary:active:not(:disabled) {
+  transform: translateY(0);
 }
 
-.btn-oauth:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+.btn-stitch-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Ghost OAuth Button */
+.btn-stitch-oauth {
+  background-color: #121216;
+  border: 1px solid #222228;
+  color: #e5e1e4;
+  font-family: "Inter", sans-serif;
+  font-size: 0.725rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-stitch-oauth:hover {
+  background-color: #16161d;
+  border-color: rgba(212, 175, 55, 0.45);
   color: #ffffff;
-  transform: translateY(-1px);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
 }
 
-/* Custom Checkbox */
-.custom-checkbox-box {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+/* ── Page Transitions & Micro-Animations ───────────────────── */
+.auth-page-enter {
+  animation: stitchFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Loading Spinner */
-.auth-spinner {
-  animation: spinLoader 0.8s linear infinite;
+.auth-page-exit {
+  animation: stitchFadeOut 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stitchFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stitchFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* ── Spinner Loader ────────────────────────────────────────── */
+.stitch-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #0c0c0e;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: stitchSpin 0.75s linear infinite;
+  display: inline-block;
+}
+
+@keyframes stitchSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Ornamental Accents & Monograms ────────────────────────── */
+.gold-monogram-ambient {
+  filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.22));
+}
+
+.editorial-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: rgba(212, 175, 55, 0.05);
+  color: #d4af37;
+  font-family: "Inter", sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
