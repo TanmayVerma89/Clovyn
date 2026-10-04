@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router";
 import { useSelector } from "react-redux";
 import { useAuth } from "../hooks/useAuth";
@@ -12,15 +12,18 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
 
-  const { handleLogin } = useAuth();
+  const { handleLogin, clearAuthError } = useAuth();
   const { loading, error } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    clearAuthError();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) return;
     await handleLogin({ email, password });
-  
   };
 
   const handleNavigateToRegister = (e) => {
@@ -76,7 +79,7 @@ const Login = () => {
               <label className="stitch-label">Email Address</label>
               <div className="relative">
                 <input
-                  type="email"
+                  type= "text"
                   required
                   autoComplete="username"
                   value={email}

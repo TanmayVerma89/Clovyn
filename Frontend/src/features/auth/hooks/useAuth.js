@@ -9,6 +9,7 @@ export const useAuth = () => {
 
   async function handleRegister({ fullname, email, password, contact, role }) {
     try {
+      dispatch(setError(null));
       dispatch(setLoading(true));
       const response = await register({
         fullname,
@@ -17,7 +18,12 @@ export const useAuth = () => {
         contact,
         role,
       });
-      dispatch(setUser(response));
+
+      if (response && response.success === false) {
+        throw new Error(response.message || "Registration failed");
+      }
+
+      dispatch(setUser(response.user || response));
       dispatch(setLoading(false));
       navigate("/");
     } catch (error) {
@@ -28,9 +34,15 @@ export const useAuth = () => {
 
   async function handleLogin({ email, password }) {
     try {
+      dispatch(setError(null));
       dispatch(setLoading(true));
       const response = await login({ email, password });
-      dispatch(setUser(response));
+
+      if (response && response.success === false) {
+        throw new Error(response.message || "Login failed");
+      }
+
+      dispatch(setUser(response.user || response));
       dispatch(setLoading(false));
       navigate("/");
     } catch (error) {
@@ -39,5 +51,10 @@ export const useAuth = () => {
     }
   }
 
-  return { handleLogin, handleRegister };
+  const clearAuthError = () => {
+    dispatch(setError(null));
+  };
+
+  return { handleLogin, handleRegister, clearAuthError };
 };
+

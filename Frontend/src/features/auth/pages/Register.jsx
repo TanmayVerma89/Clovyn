@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router";
 import { useSelector } from "react-redux";
 import { useAuth } from "../hooks/useAuth";
@@ -16,9 +16,13 @@ const Register = () => {
   const [validationError, setValidationError] = useState("");
   const [isExiting, setIsExiting] = useState(false);
 
-  const { handleRegister } = useAuth();
+  const { handleRegister, clearAuthError } = useAuth();
   const { loading, error } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    clearAuthError();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
