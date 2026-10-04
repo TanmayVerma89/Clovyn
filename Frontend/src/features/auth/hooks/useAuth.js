@@ -1,9 +1,11 @@
 import { setUser, setError, setLoading } from "../state/auth.slice";
 import { useDispatch } from "react-redux";
 import { register, login } from "../service/auth.api";
+import { useNavigate } from "react-router";
 
 export const useAuth = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function handleRegister({ fullname, email, password, contact, role }) {
     try {
@@ -17,6 +19,7 @@ export const useAuth = () => {
       });
       dispatch(setUser(response));
       dispatch(setLoading(false));
+      navigate("/");
     } catch (error) {
       dispatch(setError(error.message));
       dispatch(setLoading(false));
@@ -29,6 +32,7 @@ export const useAuth = () => {
       const response = await login({ email, password });
       dispatch(setUser(response));
       dispatch(setLoading(false));
+      navigate("/");
     } catch (error) {
       dispatch(setError(error.message));
       dispatch(setLoading(false));

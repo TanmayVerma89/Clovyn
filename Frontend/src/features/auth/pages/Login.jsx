@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     if (!email || !password) return;
     await handleLogin({ email, password });
-    navigate("/");
+  
   };
 
   const handleNavigateToRegister = (e) => {
@@ -32,43 +32,28 @@ const Login = () => {
   };
 
   return (
-    <div className="stitch-auth-container h-screen max-h-screen overflow-hidden no-scrollbar">
-      {/* ── Left Panel: Haute Couture Client Form ── */}
-      <div className={`stitch-form-panel no-scrollbar ${isExiting ? "auth-page-exit" : "auth-page-enter"}`}>
-        <div className="w-full max-w-[400px] mx-auto flex flex-col justify-center">
-          
-          {/* Brand Header */}
-          <div className="flex flex-col items-center text-center mb-5">
-            <div className="brand-logo-header-thumb mb-2 w-9 h-9">
-              <img src={clovynLogo} alt="Clovyn Emblem" />
-            </div>
-            <div className="flex items-center gap-1">
-              <span className="font-display-cinzel text-xl text-[#d4af37] font-bold">C</span>
-              <span className="font-display-cinzel text-xl text-[#f7f7f8] tracking-ultra-wide font-semibold">
-                LOVYN
-              </span>
-            </div>
-            <div className="w-8 h-[1px] bg-[#d4af37]/40 mt-1.5 mb-0.5" />
-            <span className="font-sans-editorial text-[9px] tracking-caps-wide uppercase text-neutral-400">
-              Client Portal & Atelier
-            </span>
-          </div>
-
+    <div className="stitch-auth-container no-scrollbar">
+      {/* ── 60% Left Panel: Fashion Marketplace Client & Merchant Login ── */}
+      <div
+        className={`stitch-form-panel no-scrollbar ${isExiting ? "auth-page-exit" : "auth-page-enter"}`}
+      >
+        <div className="w-full max-w-[480px] mx-auto flex flex-col justify-center my-auto">
           {/* Editorial Title */}
-          <div className="text-center mb-5">
-            <h1 className="font-serif-luxury text-3xl sm:text-4xl text-[#f7f7f8] font-normal tracking-tight mb-1.5">
+          <div className="text-center mb-7">
+            <h1 className="font-serif-luxury text-3xl sm:text-4xl text-[#f7f7f8] font-normal tracking-tight mb-2">
               Welcome Back
             </h1>
-            <p className="font-sans-editorial text-xs text-neutral-400 tracking-subtle">
-              Sign in to access your curated wardrobe & orders
+            <p className="font-sans-editorial text-xs sm:text-sm text-neutral-400 tracking-subtle max-w-sm mx-auto">
+              Sign in to manage your orders, wardrobe wishlist, or merchant
+              storefront
             </p>
           </div>
 
           {/* Error Alert */}
           {error && (
-            <div className="mb-4 p-2.5 bg-red-950/40 border border-red-500/30 text-red-300 text-xs flex items-center gap-2">
+            <div className="mb-5 p-3.5 bg-red-950/40 border border-red-500/30 text-red-300 text-xs flex items-center gap-2.5">
               <svg
-                className="w-3.5 h-3.5 shrink-0 text-red-400"
+                className="w-4 h-4 shrink-0 text-red-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -84,8 +69,8 @@ const Login = () => {
             </div>
           )}
 
-          {/* Authentication Form */}
-          <form onSubmit={handleSubmit} className="space-y-3.5">
+          {/* Authentication Form with Ample Breathing Space */}
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email Field */}
             <div className="stitch-input-wrapper">
               <label className="stitch-label">Email Address</label>
@@ -93,13 +78,19 @@ const Login = () => {
                 <input
                   type="email"
                   required
+                  autoComplete="username"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="client@clovyn.com"
-                  className="stitch-input w-full px-3.5 py-2.5 text-xs sm:text-sm focus:outline-none"
+                  placeholder="shopper@domain.com or merchant@brand.com"
+                  className="stitch-input w-full px-4 py-3 text-sm focus:outline-none"
                 />
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none">
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -118,29 +109,45 @@ const Login = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   required
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="stitch-input w-full px-3.5 py-2.5 text-xs sm:text-sm pr-9 focus:outline-none"
+                  className="stitch-input w-full px-4 py-3 text-sm pr-10 focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-[#d4af37] transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-[#d4af37] transition-colors"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="1.5"
-                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
                       />
                     </svg>
                   ) : (
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -154,15 +161,26 @@ const Login = () => {
             </div>
 
             {/* Utility Row */}
-            <div className="flex items-center justify-between text-xs pt-0.5">
+            <div className="flex items-center justify-between text-xs pt-1">
               <label
                 onClick={() => setRememberMe(!rememberMe)}
-                className="stitch-checkbox-container flex items-center gap-2 cursor-pointer select-none"
+                className="stitch-checkbox-container flex items-center gap-2.5 cursor-pointer select-none"
               >
-                <div className={`stitch-checkbox ${rememberMe ? "active" : ""}`}>
+                <div
+                  className={`stitch-checkbox ${rememberMe ? "active" : ""}`}
+                >
                   {rememberMe && (
-                    <svg className="w-3 h-3 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    <svg
+                      className="w-3 h-3 stroke-[3]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                   )}
                 </div>
@@ -175,7 +193,7 @@ const Login = () => {
                 href="#forgot-password"
                 className="font-sans-editorial text-xs text-[#d4af37] hover:text-[#e5c378] transition-colors"
               >
-                Forgot passkey?
+                Forgot password?
               </a>
             </div>
 
@@ -183,15 +201,25 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="btn-stitch-primary w-full py-2.5 px-5 flex items-center justify-center gap-2 cursor-pointer mt-2.5"
+              className="btn-stitch-primary w-full py-3.5 px-6 flex items-center justify-center gap-2.5 cursor-pointer mt-4"
             >
               {loading ? (
                 <span className="stitch-spinner" />
               ) : (
                 <>
-                  <span>Sign In</span>
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  <span>Sign In </span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
                   </svg>
                 </>
               )}
@@ -199,9 +227,9 @@ const Login = () => {
           </form>
 
           {/* Divider */}
-          <div className="relative my-4 flex items-center justify-center">
+          <div className="relative my-5 flex items-center justify-center">
             <div className="w-full border-t border-white/10" />
-            <span className="absolute bg-[#0c0c0e] px-3 font-sans-editorial text-[9.5px] tracking-caps-wide text-neutral-500 uppercase">
+            <span className="absolute bg-[#0c0c0e] px-4 font-sans-editorial text-[10px] tracking-caps-wide text-neutral-500 uppercase">
               Or Authenticate With
             </span>
           </div>
@@ -210,9 +238,9 @@ const Login = () => {
           <div>
             <button
               type="button"
-              className="btn-stitch-oauth w-full py-2 px-3.5 flex items-center justify-center gap-2.5 cursor-pointer"
+              className="btn-stitch-oauth w-full py-3 px-4 flex items-center justify-center gap-3 cursor-pointer"
             >
-              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" viewBox="0 0 24 24">
                 <path
                   fill="#EA4335"
                   d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"
@@ -235,66 +263,90 @@ const Login = () => {
           </div>
 
           {/* Navigation to Register */}
-          <div className="mt-5 text-center text-xs text-neutral-400">
-            <span>New to the Maison? </span>
+          <div className="mt-3 text-center text-xs text-neutral-400">
+            <span>New to the Marketplace? </span>
             <Link
               to="/register"
               onClick={handleNavigateToRegister}
               className="text-[#d4af37] hover:text-[#e5c378] font-semibold tracking-wide transition-colors"
             >
-              Create an Account
+              Create a Buyer or Seller Account
             </Link>
           </div>
-
         </div>
       </div>
 
-      {/* ── Right Panel: Brand Editorial & Haute Couture Monogram ── */}
+      {/* ── 40% Right Panel: Marketplace Brand Showcase & Ecosystem Stories ── */}
       <div className="stitch-editorial-panel no-scrollbar">
         <div className="editorial-fabric-texture" />
         <div className="stitch-grid-lines" />
         <div className="ambient-gold-glow" />
 
-        {/* Top Editorial Bar */}
+        {/* Top Header Tag */}
         <div className="relative z-10 flex items-center justify-between">
           <div className="editorial-tag-pill">
             <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
-            <span>Autumn / Winter 2025</span>
+            <span>Fashion Marketplace</span>
           </div>
           <span className="font-sans-editorial text-[9.5px] tracking-caps-wide text-neutral-400 uppercase">
-            Lookbook &bull; N&deg; 01
+            Curated Ecosystem
           </span>
         </div>
 
-        {/* Centerpiece: Sculptured Brand Logo & Manifesto */}
-        <div className="relative z-10 flex flex-col items-center text-center my-auto py-5">
+        {/* Center: Brand Identity & Dual-Sided Marketplace Story */}
+        <div className="relative z-10 flex flex-col items-center text-center my-auto py-6">
           <div className="brand-logo-emblem-frame mb-6">
             <img
               src={clovynLogo}
-              alt="Clovyn Haute Couture"
-              className="w-44 h-44 sm:w-52 sm:h-52 object-cover gold-monogram-ambient"
+              alt="Clovyn Marketplace"
+              className="w-36 h-36 sm:w-44 sm:h-44 object-cover gold-monogram-ambient"
             />
           </div>
 
-          <span className="font-sans-editorial text-[10px] tracking-ultra-wide uppercase text-[#d4af37] mb-2">
-            Haute Couture & Ready-to-Wear
+          <span className="font-sans-editorial text-[10px] tracking-ultra-wide uppercase text-[#d4af37] mb-2.5">
+            Where Style Meets Commerce
           </span>
 
-          <h2 className="font-serif-luxury text-3xl sm:text-4xl text-[#f7f7f8] font-light tracking-wide mb-3 leading-tight">
-            WEAR YOUR STORY
+          <h2 className="font-serif-luxury text-3xl sm:text-4xl text-[#f7f7f8] font-normal tracking-wide mb-3 leading-tight">
+            THE FASHION EXCHANGE
           </h2>
 
-          <div className="w-14 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-3" />
+          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-5" />
 
-          <p className="font-sans-editorial text-xs text-neutral-400 max-w-xs leading-relaxed tracking-subtle">
-            Architectural tailoring, bespoke fabrics, and timeless luxury crafted for those who define distinction.
-          </p>
+          {/* Two-Sided Marketplace Value Propositions */}
+          <div className="w-full max-w-sm space-y-3 text-left">
+            <div className="marketplace-feature-card p-3.5 border">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs">🛍️</span>
+                <span className="font-sans-editorial text-xs font-semibold text-[#f7f7f8] tracking-wider uppercase">
+                  For Fashion Shoppers
+                </span>
+              </div>
+              <p className="font-sans-editorial text-[11px] text-neutral-400 leading-relaxed">
+                Discover exclusive apparel collections, limited drop runs, and
+                verified luxury designers all in one destination.
+              </p>
+            </div>
+
+            <div className="marketplace-feature-card p-3.5 border">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs">🏷️</span>
+                <span className="font-sans-editorial text-xs font-semibold text-[#d4af37] tracking-wider uppercase">
+                  For Brand Sellers & Ateliers
+                </span>
+              </div>
+              <p className="font-sans-editorial text-[11px] text-neutral-400 leading-relaxed">
+                Showcase your clothing line to thousands of high-intent buyers
+                with seamless inventory, order management, and global payouts.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Archival Metadata */}
-        <div className="relative z-10 flex items-center justify-between pt-4 border-t border-white/[0.06] text-[9.5px] tracking-caps-wide text-neutral-400 uppercase">
-          <span>Paris &bull; Milan &bull; New York</span>
-          <span>Authenticity Verified</span>
+        <div className="relative z-10 flex items-center justify-between pt-4 border-t border-white/[0.08] text-[9.5px] tracking-caps-wide text-neutral-400 uppercase">
+          <span>500+ Verified Labels</span>
+          <span>100% Authentic Trade</span>
         </div>
       </div>
     </div>
