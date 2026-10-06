@@ -39,7 +39,8 @@ export const registerController = async (req, res) => {
             $or: [{ email }, { contact }]
         });
         if (existingUser) {
-            return res.status(409).json({ message: "Email already exists with " + existingUser?.email == email ? "Email" : "Contact" });
+            const field = existingUser.email === email ? "Email" : "Contact";
+            return res.status(409).json({ message: `${field} already exists` });
         }
 
         // Save user to database

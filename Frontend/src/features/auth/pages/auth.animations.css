@@ -1,0 +1,454 @@
+/* ============================================================
+   CLOVYN — Haute Couture & Editorial Fashion Marketplace
+   60-40 Split-Screen Architecture (60% Forms / 40% Brand & Stories)
+   ============================================================ */
+
+/* ── 1. Typography Tokens ──────────────────────────────────── */
+.font-serif-luxury {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.font-display-cinzel {
+  font-family: "Cinzel", "Playfair Display", Georgia, serif;
+}
+
+.font-sans-editorial {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.tracking-ultra-wide {
+  letter-spacing: 0.35em;
+}
+
+.tracking-caps-wide {
+  letter-spacing: 0.22em;
+}
+
+.tracking-subtle {
+  letter-spacing: 0.06em;
+}
+
+/* ── 2. Scrollbar Suppression ──────────────────────────────── */
+html,
+body,
+.no-scrollbar,
+.stitch-auth-container,
+.stitch-form-panel,
+.stitch-editorial-panel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar,
+.stitch-auth-container::-webkit-scrollbar,
+.stitch-form-panel::-webkit-scrollbar,
+.stitch-editorial-panel::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── 3. 60-40 Split-Screen Layout Containers ───────────────── */
+.stitch-auth-container {
+  background-color: #08080a;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 60% Form Panel on Desktop with Ample Breathing Space */
+.stitch-form-panel {
+  background-color: #0c0c0e;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1.75rem;
+  position: relative;
+  z-index: 10;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  overflow-y: auto;
+}
+
+@media (min-width: 1024px) {
+  .stitch-form-panel {
+    width: 60%;
+    padding: 3rem 4.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .stitch-form-panel {
+    padding: 3.5rem 6rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .stitch-form-panel {
+    padding: 4.5rem 8rem;
+  }
+}
+
+/* 40% Editorial & Stories Panel */
+.stitch-editorial-panel {
+  display: none;
+  width: 40%;
+  height: 100vh;
+  background-color: #070709;
+  position: relative;
+  overflow-y: auto;
+  border-left: 1px solid rgba(212, 175, 55, 0.14);
+}
+
+@media (min-width: 1024px) {
+  .stitch-editorial-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.75rem 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .stitch-editorial-panel {
+    padding: 3.25rem 3.5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .stitch-editorial-panel {
+    padding: 4rem 4rem;
+  }
+}
+
+/* ── 4. Editorial Jacquard Texture & Ambient Lighting ──────── */
+.editorial-fabric-texture {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.09) 0%, transparent 65%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(212, 175, 55, 0.02) 0px,
+      rgba(212, 175, 55, 0.02) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.015) 0px,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+  pointer-events: none;
+}
+
+.stitch-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  pointer-events: none;
+}
+
+.ambient-gold-glow {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, rgba(197, 160, 89, 0.05) 45%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: pulseGoldGlow 10s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGoldGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.95;
+  }
+}
+
+/* ── 5. Brand Logo Frame & Header Thumbnail ────────────────── */
+.brand-logo-emblem-frame {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(18, 18, 22, 0.8) 70%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.18), inset 0 0 20px rgba(212, 175, 55, 0.1);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-logo-emblem-frame:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.28), inset 0 0 25px rgba(212, 175, 55, 0.18);
+  transform: scale(1.02);
+}
+
+.brand-logo-header-thumb {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  flex-shrink: 0;
+}
+
+.brand-logo-header-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.gold-monogram-ambient {
+  filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.22));
+}
+
+/* ── 6. Form Inputs & Labels (Ample Breathing Room) ─────────── */
+.stitch-input-wrapper {
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.stitch-input {
+  background-color: #121216;
+  border: 1px solid #222228;
+  color: #f7f7f8;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.stitch-input::placeholder {
+  color: #60606b;
+  font-weight: 300;
+}
+
+.stitch-input:hover {
+  border-color: #383842;
+  background-color: #141419;
+}
+
+.stitch-input:focus {
+  outline: none;
+  border-color: #d4af37;
+  background-color: #16161c;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.25), 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.stitch-label {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #a8a8b2;
+  margin-bottom: 0.45rem;
+}
+
+/* ── 7. Custom Luxury Checkbox & Seller Tier Card ──────────── */
+.stitch-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #383842;
+  background-color: #121216;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.stitch-checkbox.active {
+  background: linear-gradient(135deg, #e5c378 0%, #d4af37 100%);
+  border-color: #d4af37;
+  color: #0c0c0e;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.stitch-checkbox-container:hover .stitch-checkbox:not(.active) {
+  border-color: rgba(212, 175, 55, 0.55);
+  background-color: #18181f;
+}
+
+.seller-role-card {
+  border: 1px solid #222228;
+  background: linear-gradient(180deg, #131317 0%, #0f0f13 100%);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.seller-role-card:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  background: linear-gradient(180deg, #17171d 0%, #121216 100%);
+}
+
+.seller-role-card.active {
+  border-color: #d4af37;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(18, 18, 22, 0.98) 100%);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.12);
+}
+
+/* ── 8. Buttons & CTAs ─────────────────────────────────────── */
+.btn-stitch-primary {
+  position: relative;
+  background: linear-gradient(135deg, #f2d288 0%, #d4af37 50%, #b89127 100%);
+  color: #0c0c0e;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 0.775rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.22);
+  overflow: hidden;
+}
+
+.btn-stitch-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transition: left 0.6s ease;
+}
+
+.btn-stitch-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 26px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, #ffe09b 0%, #e0bc46 50%, #c59d33 100%);
+}
+
+.btn-stitch-primary:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.btn-stitch-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-stitch-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-stitch-oauth {
+  background-color: #121216;
+  border: 1px solid #222228;
+  color: #e5e1e4;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-stitch-oauth:hover {
+  background-color: #16161d;
+  border-color: rgba(212, 175, 55, 0.45);
+  color: #ffffff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* ── 9. Marketplace Story & Feature Cards (40% Side) ───────── */
+.marketplace-feature-card {
+  background: rgba(18, 18, 22, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.marketplace-feature-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(22, 22, 28, 0.85);
+  transform: translateY(-1px);
+}
+
+/* ── 10. Transitions, Spinners & Ornaments ─────────────────── */
+.auth-page-enter {
+  animation: stitchFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.auth-page-exit {
+  animation: stitchFadeOut 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stitchFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stitchFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.stitch-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #0c0c0e;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: stitchSpin 0.75s linear infinite;
+  display: inline-block;
+}
+
+@keyframes stitchSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.editorial-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: rgba(212, 175, 55, 0.06);
+  color: #d4af37;
+  font-family: "Inter", sans-serif;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
