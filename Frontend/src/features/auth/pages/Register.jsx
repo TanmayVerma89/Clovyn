@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router";
 import { useSelector } from "react-redux";
 import { useAuth } from "../hooks/useAuth";
 import clovynLogo from "../../../assets/clovyn-logo.jpg";
-import "./auth.animations.css";
+import "../styles/auth.animations.css";
 
 const Register = () => {
   const [fullname, setFullname] = useState("");
@@ -34,7 +34,7 @@ const Register = () => {
     }
 
     const role = isSeller ? "seller" : "buyer";
-    
+
     await handleRegister({
       fullname,
       email,
@@ -43,6 +43,11 @@ const Register = () => {
       role,
     });
   };
+
+  const handleGoogleOauth = async () => {
+    // Redirect to Google OAuth endpoint with the appropriate
+    window.location.href = `/api/auth/register/google?role=${isSeller ? "seller" : "buyer"}`;
+  }
 
   const handleNavigateToLogin = (e) => {
     e.preventDefault();
@@ -99,7 +104,7 @@ const Register = () => {
                 <input
                   type="text"
                   required
-                  autoComplete= "name"
+                  autoComplete="name"
                   value={fullname}
                   onChange={(e) => setFullname(e.target.value)}
                   placeholder="Alexander Sterling"
@@ -138,7 +143,7 @@ const Register = () => {
                 <input
                   type="tel"
                   required
-                  autoComplete= "tel"
+                  autoComplete="tel"
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
                   placeholder="+91 98765 43210"
@@ -155,7 +160,7 @@ const Register = () => {
                   <input
                     type={showPassword ? "text" : "password"}
                     required
-                    autoComplete= "new-password"
+                    autoComplete="new-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••••••"
@@ -210,9 +215,8 @@ const Register = () => {
             <div className="pt-1">
               <label
                 onClick={() => setIsSeller(!isSeller)}
-                className={`seller-role-card flex items-start gap-3.5 p-3.5 cursor-pointer select-none rounded-sm ${
-                  isSeller ? "active" : ""
-                }`}
+                className={`seller-role-card flex items-start gap-3.5 p-3.5 cursor-pointer select-none rounded-sm ${isSeller ? "active" : ""
+                  }`}
               >
                 <div className={`stitch-checkbox mt-0.5 ${isSeller ? "active" : ""}`}>
                   {isSeller && (
@@ -264,6 +268,7 @@ const Register = () => {
           {/* Ghost Google OAuth Button */}
           <div>
             <button
+              onClick={handleGoogleOauth}
               type="button"
               className="btn-stitch-oauth w-full py-3 px-4 flex items-center justify-center gap-3 cursor-pointer"
             >
@@ -378,5 +383,5 @@ const Register = () => {
     </div>
   );
 };
- 
+
 export default Register;

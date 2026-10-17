@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router";
 import { useSelector } from "react-redux";
 import { useAuth } from "../hooks/useAuth";
 import clovynLogo from "../../../assets/clovyn-logo.jpg";
-import "./auth.animations.css";
+import "../styles/auth.animations.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -79,7 +79,7 @@ const Login = () => {
               <label className="stitch-label">Email Address</label>
               <div className="relative">
                 <input
-                  type= "text"
+                  type="text"
                   required
                   autoComplete="username"
                   value={email}
@@ -233,17 +233,21 @@ const Login = () => {
           <div className="relative my-5 flex items-center justify-center">
             <div className="w-full border-t border-white/10" />
             <span className="absolute bg-[#0c0c0e] px-4 font-sans-editorial text-[10px] tracking-caps-wide text-neutral-500 uppercase">
-              Or Authenticate With
+              Or
             </span>
           </div>
 
-          {/* Ghost Google OAuth Button */}
+          {/* Continue with Google */}
           <div>
-            <button
-              type="button"
+            <a
+              href="/api/auth/login/google"
               className="btn-stitch-oauth w-full py-3 px-4 flex items-center justify-center gap-3 cursor-pointer"
             >
-              <svg className="w-4 h-4" viewBox="0 0 24 24">
+              <svg
+                className="w-4 h-4"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path
                   fill="#EA4335"
                   d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"
@@ -262,7 +266,7 @@ const Login = () => {
                 />
               </svg>
               <span>Continue with Google</span>
-            </button>
+            </a>
           </div>
 
           {/* Navigation to Register */}

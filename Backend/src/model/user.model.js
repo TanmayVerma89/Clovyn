@@ -9,10 +9,21 @@ const userSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
+        // Google ID field is optional for Google users, but required for local users
+        googleId: {
+            type: String,
+            unique: true,
+            sparse: true,
+            select: false
+        },
+        // Password field is optional for Google users,
         password: {
             type: String,
-            required: true,
-            select: true,
+            required: function () {
+                return !this.googleId;
+            },
+            minLength: 8,
+            select: false,
         },
         fullname: {
             type: String,
@@ -20,7 +31,8 @@ const userSchema = new mongoose.Schema(
         },
         contact: {
             type: String,
-            required: true,
+            required: false,
+            sparse:true,
             unique: true,
         },
         role: {
@@ -46,7 +58,7 @@ userSchema.pre('save', async function () {
 
 userSchema.methods.comparePassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
-    
+
 }
 
 const userModel = mongoose.model("User", userSchema);
