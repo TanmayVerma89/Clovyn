@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from 'cors';
 import authRouter from "./routes/auth.routes.js";
+import passport from './config/passport.js';
 
 const app = express();
 app.use(express.json());
@@ -13,9 +14,10 @@ app.use(cors({
     origin: "http://localhost:5173", // Replace with your frontend URL
     credentials: true, // Allow cookies to be sent 
 }));
+app.use(passport.initialize()); // Initialize passport middleware
 
 // Import and use your routes here
 
-app.use("/auth", authRouter);
+app.use("/api/auth", authRouter);
 
 export default app;

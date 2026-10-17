@@ -6,7 +6,7 @@ const config = {
     PORT: process.env.PORT,
     JWT_SECRET: process.env.JWT_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET
 }
 
 if (!config.MONGO_URI) {
@@ -19,6 +19,10 @@ if (!config.JWT_SECRET) {
 
 if (!config.PORT) {
     throw new Error(" PORT is not defined in the environment variables");
+}
+
+if (!config.GOOGLE_CLIENT_ID|| !config.GOOGLE_CLIENT_SECRET) {
+    throw new Error(" GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET is not defined in the environment variables");
 }
 
 export default config;
